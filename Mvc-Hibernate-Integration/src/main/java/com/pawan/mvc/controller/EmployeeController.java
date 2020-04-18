@@ -16,7 +16,7 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService service;
-	private int a=10;
+	
 	
 	@RequestMapping("/")
 	public String register() {
