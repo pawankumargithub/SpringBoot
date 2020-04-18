@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.pawan.mvc.model.Employee;
 import com.pawan.mvc.service.EmployeeService;
@@ -25,8 +24,8 @@ public class EmployeeController {
 	}
 	@RequestMapping("/save")
 	public String save(@ModelAttribute("employee")Employee employee,Model model) throws Exception {
-	Integer id=	service.insertEmployee(employee);
-	String message="Employee Registered With Id:"+id;
+	service.insertEmployee(employee);
+	
 	Iterable<Employee> emps=	service.findAll();
 		model.addAttribute("emplist", emps);
 		return "employee";
@@ -40,4 +39,5 @@ public class EmployeeController {
 	public String showList() {
 		return "employee";
 	}
+	
 }
