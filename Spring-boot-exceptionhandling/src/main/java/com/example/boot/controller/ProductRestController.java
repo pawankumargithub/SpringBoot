@@ -26,19 +26,23 @@ public class ProductRestController {
 
 	@GetMapping("/all")
 	public Iterable<Product> findAllProduct() {
+		Iterable<Product> products = null;
 
-		Iterable<Product> products= service.findAllProduct();
-		if(products==null)
-			throw new ProductNotFoundException("product is not available");
+		try {
+			products = service.findAllProduct();
+		} catch (Exception e) {
+			throw new ProductNotFoundException("no product found in db");
+		}
+
 		return products;
 	}
+
 	@GetMapping("/byid/{prodId}")
-public Product findById(@PathVariable Integer prodId) {
-		Product productId=null;
+	public Product findById(@PathVariable Integer prodId) {
+		Product productId = null;
 		try {
-			 productId= service.findById(prodId);
-		}
-		catch(Exception e) {
+			productId = service.findById(prodId);
+		} catch (Exception e) {
 			throw new ProductNotFoundException("product not found with given id");
 		}
 		return productId;
