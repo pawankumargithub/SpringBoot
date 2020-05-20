@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+		<property name="hibernate.connection.username">system</property>
+		<property name="hibernate.connection.password">admin</property>
+
+
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+		<property name="hibernate.hbm2ddl.auto">create</property>
+		
+		<mapping class="com.pawan.mvc.bo.PatientBO"/>
+	
+	</session-factory>
+</hibernate-configuration>
