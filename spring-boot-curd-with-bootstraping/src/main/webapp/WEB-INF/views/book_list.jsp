@@ -26,7 +26,9 @@
 				<li class="active"><a href="deleteAll">Delete All</a></li>
 				<li><a href="findall">All Book</a></li>
 				<li><a href="regbook">Add New Book</a></li>
+				<li class="active"><a href="getonebookform">Get One Book</a></li>
 			</ul>
+			
 			<button class="btn btn-danger navbar-btn">Button</button>
 		</div>
 	</nav>

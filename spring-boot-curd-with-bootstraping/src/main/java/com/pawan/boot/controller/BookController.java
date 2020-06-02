@@ -2,6 +2,7 @@ package com.pawan.boot.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pawan.boot.command.BookCommand;
 import com.pawan.boot.dto.BookDTO;
+import com.pawan.boot.exception.NoBookFoundException;
 import com.pawan.boot.service.IBookService;
 
 @Controller
@@ -106,5 +108,26 @@ public class BookController {
 		return "book_list";
 
 	}
+	@GetMapping("/getonebookform")
+	public String showFindOneBookFormPage(@ModelAttribute("cmd") BookCommand cmd) {
+		
+		return "search";
+	}
 
+	@PostMapping("/getonebook")
+	public String findBookById(@ModelAttribute("cmd") BookCommand cmd,Model model) {
+	
+		BookDTO dto=new BookDTO();
+		BeanUtils.copyProperties(cmd, dto);
+		dto=service.findOneBookById(dto.getBookId());
+		 if(dto.getBookId()!=cmd.getBookId()) {
+			 throw new NoBookFoundException("not book existed");
+		 }
+		BeanUtils.copyProperties(dto, cmd);
+		 
+		model.addAttribute("cmd", cmd);
+		return "onebookdata";
+		
+		
+	}
 }
