@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<table border="1" align="center">
+
+		<tr>
+			<th>ID</th>
+			<th>MODE</th>
+			<th>CODE</th>
+			<th>TYPE</th>
+			<th>ACCEPT</th>
+			<th>DESCRIPTION</th>
+		</tr>
+		<tr >
+		
+		<td th:text="${orderMethod.id}"></td>
+		<td th:text="${orderMethod.orderMode}"></td>
+		<td th:text="${orderMethod. orderCode}"></td>
+		<td th:text="${orderMethod.orderType}"></td>
+		<td th:text="${orderMethod.orderAccept}"></td>
+		<td th:text="${orderMethod.description}"></td>
+		
+		</tr>
+	</table>
+</body>
+</html>

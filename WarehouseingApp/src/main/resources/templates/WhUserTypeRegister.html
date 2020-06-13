@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" />
+<head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+
+	<div class="container">
+
+		<div class="card">
+
+			<div class="card-header bg-primary text-white text-center">
+				<h3>WELCOME TO ORDERMETHOD REGISTER PAGE</h3>
+			</div>
+		</div>
+
+		<div class="card-body">
+
+			<form th:action="@{/whUserType/save}" method="post"
+				th:object="${whUserType}">
+
+				<div class="row">
+
+					<div class="col-4">
+
+						<label for="userType">User Type</label>
+					</div>
+					<div class="col-4">
+						<input type="radio" th:field="*{userType}" value="VENDOR">VENDOR
+						<input type="radio" th:field="*{userType}" value="CUSTOMER">CUSTOMER
+
+					</div>
+					<div class="col-4">
+						<span id="userTypeError"</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-4">
+						<label for="userCode"> USER CODE</label>
+					</div>
+					<div class="col-4">
+						<input type="text" th:field="*{userCode}" class="form-controller">
+
+					</div>
+					<div class="col-4">
+						<span id="userCodeError"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-4">
+						<label for="userFor"> FOR USER</label>
+					</div>
+					<div class="col-4">
+
+
+						<select th:field="*{userFor}">
+
+							<option value="PURCHASE">PURCHASE</option>
+							<option value="SALE">SALE</option>
+						</select>
+					</div>
+					<div class="col-4">
+						<span id="userForError"></span>
+					</div>
+
+				</div>
+				<div class="row">
+
+					<div class="col-4">
+						<label for="userEmail">USER EMAIL</label>
+					</div>
+					<div class="col-4">
+
+						<input type="text" th:field="*{userEmail}" class="form-controller" />
+					</div>
+					<div class="col-4">
+						<span id="userEmailError"></span>
+					</div>
+				</div>
+
+				<div class="row">
+
+					<div class="col-4">
+						<label for="userContact">CONTCAT</label>
+					</div>
+					<div class="col-4">
+
+						<input type="text" th:field="*{userContact}"
+							class="form-controller" />
+					</div>
+					<div class="col-4">
+						<span id="userContactError"></span>
+					</div>
+				</div>
+
+
+				<div class="row">
+
+					<div class="col-4">
+						<label for="userIdType">USER ID TYPE</label>
+					</div>
+					<div class="col-4">
+
+						<select th:field="*{userIdType}">
+							<option value="">SELECT</option>
+							<option value="PANCARD">PANCARD</option>
+							<option value="ADHAR CARD">ADHAR CARD</option>
+							<option value="VOTER ID">VOTER ID</option>
+							<option value="PASSPORT">PASSPORT</option>
+							<option value="OTHERS">OTHERS</option>
+						</select>
+						<div class="col-4">
+							<span id="userIdTypeError"></span>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-4">
+							<label for="idNumber"> USER ID NUMBER</label>
+						</div>
+
+						<div class="col-4">
+							<input type="text" th:field="*{idNumber}" class="form-controller">
+
+						</div>
+					<div class="col-4">
+						<span id="userContactError"></span>
+					</div>
+				</div>
+
+				<input type="submit" value="Register WhUserType" class="btn btn-success">
+				
+			</form>
+
+		</div>
+	</div>
+
+	<div class="card-footer text-center bg-primary">
+
+		<a th:text="${message}"></a>
+
+	</div>
+
+
+
+
+
+</body>
+</html>

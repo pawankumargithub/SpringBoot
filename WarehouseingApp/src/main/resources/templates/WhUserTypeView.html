@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+
+	<div class="container">
+		<div class="card">
+			<div class="card-header bg-primary text-white text-center">
+
+				<h3>WELCOME TO WHUSERTYPE VIEW PAGE</h3>
+			</div>
+
+			<div class="card-body">
+				<table class="table table table-hover">
+
+					<tr>
+						<th>ID</th>
+						<th>USER TYPE</th>
+						<th>USER CODE</th>
+						<th>USER FOR</th>
+						<th>USER EMAIL</th>
+						<th>USER CONTACT</th>
+						<th>USER ID</th>
+						<th>ID NUMBER</th>
+					<tr>
+
+						<td th:text="${whUserType.id}"></td>
+						<td th:text="${whUserType.userType}"></td>
+						<td th:text="${whUserType. userCode}"></td>
+						<td th:text="${whUserType.userFor}"></td>
+						<td th:text="${whUserType.userEmail}"></td>
+						<td th:text="${whUserType.userContact}"></td>
+						<td th:text="${whUserType.userIdType}"></td>
+						<td th:text="${whUserType.idNumber}"></td>
+
+					</tr>
+				</table>
+
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>

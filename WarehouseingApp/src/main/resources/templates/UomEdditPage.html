@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" />
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+</h3>
+<body>
+
+	<div class="container">
+		<div class="card">
+			<div class="card-header bg-primary text-center">
+				<h3>WELCOME TO UOM EDDIT PAGE</h3>
+			</div>
+			<div class="card-body">
+				<form th:action="@{/uom/update}" method="post" th:object="${uom}">
+
+                    <div class="row">
+                       <div class="col-4">
+                        <label for="id">ID</label>
+                       </div>
+                       <div class="col-4">
+                       <input type="text" th:field="*{id}" readonly="readonly" class="form-controller">
+                         
+                       </div>
+                    </div>
+					<div class="row">
+
+						<div class="col-4">
+							<label for="umoType">Uom Type</label>
+						</div>
+						<div class="col-4">
+							<select th:field="*{umoType}" class="form-controller">
+								<option value="">SELECT</option>
+								<option value="PACKING">PACKING</option>
+								<option value="NO PACKING">NO PACKING</option>
+							</select>
+						</div>
+						<div class="col-4">
+
+							<span id="uomTypeError"></span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-4">
+							<label for="uomModel">Uom Model</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{uomModel}" class="form-controller">
+						</div>
+						<div class="col-4">
+							<span id="uomModelError"></span>
+						</div>
+						<div class="row">
+							<div class="col-4">
+								<label for="description">Description</label>
+							</div>
+							<div class="col-4">
+								<input type="text" th:field="*{description}"
+									class="form-controller">
+							</div>
+							<div class="col-4">
+							<span id="descriptonError"></span>
+						</div>
+						</div>
+					</div>
+
+					<input type="submit" value="update Uom" class="btn btn-success">
+
+
+				</form>
+
+			</div>
+
+		</div>
+
+	</div>
+	<div class="card-footer bg-primary text-white text-center">
+
+		<b><a th:text="${message}"></a></b>
+
+	</div>
+
+
+
+</body>
+</html>

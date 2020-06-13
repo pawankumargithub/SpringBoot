@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+
+	<div class="container">
+
+		<div class="card">
+			<div class="card-header">
+				<H3>WELCOME TO SHIPMENT DATA PAGE</H3>
+			</div>
+		</div>
+		<div class="card-body">
+
+			<table class="table table-hover">
+				<tr class="bg-info text-white text-center">
+
+					<th>ID</th>
+					<th>MODE</th>
+					<th>CODE</th>
+					<th>ENABLE</th>
+					<th>GRADE</th>
+					<th>DESCRIPTION</th>
+					<th colspan="1">ACTION</th>
+				</tr>
+
+				<tr th:each="ob:${list}">
+					<td th:text="${ob.id}"></td>
+					<td th:text="${ob.shipmentMode}"></td>
+					<td th:text="${ob.shipmentCode}"></td>
+					<td th:text="${ob.enableShipment}"></td>
+					<td th:text="${ob.shipmentGrade}"></td>
+					<td th:text="${ob.description}"></td>
+					<td><a th:href="@{/shipMenttype/delete/{id}(id=${ob.id})}" class="btn btn-danger">DELETE</a>
+						<a th:href="@{/shipMenttype/eddit/{id}(id=${ob.id})}" class="btn btn-success">EDDIT</a></td>
+
+				</tr>
+			</table>
+
+
+		</div>
+		<div class="card-footer">
+
+			<h1 style="color: red; text-align: center;">
+				<a th:text="${message}"></a>
+			</h1>
+		</div>
+	</div>
+
+
+
+
+</body>
+</html>
