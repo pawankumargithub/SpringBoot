@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org" />
 
+<head>
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/uom.js}"></script>
+</head>
 
-</h3>
 <body>
 
 	<div class="container">
@@ -13,55 +20,57 @@
 				<h3>WELCOME TO UOM EDDIT PAGE</h3>
 			</div>
 			<div class="card-body">
-				<form th:action="@{/uom/update}" method="post" th:object="${uom}">
+				<form id="uomForm" th:action="@{/uom/update}" method="post"
+					  th:object="${uom}">
 
-                    <div class="row">
-                       <div class="col-4">
-                        <label for="id">ID</label>
-                       </div>
-                       <div class="col-4">
-                       <input type="text" th:field="*{id}" readonly="readonly" class="form-controller">
-                         
-                       </div>
-                    </div>
+					<div class="row">
+						<div class="col-2">
+							<label for="id">ID</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{id}" readonly="readonly"
+								class="form-control">
+
+						</div>
+					</div>
 					<div class="row">
 
-						<div class="col-4">
+						<div class="col-2">
 							<label for="umoType">Uom Type</label>
 						</div>
 						<div class="col-4">
-							<select th:field="*{umoType}" class="form-controller">
+							<select th:field="*{umoType}" class="form-contro">
 								<option value="">SELECT</option>
 								<option value="PACKING">PACKING</option>
 								<option value="NO PACKING">NO PACKING</option>
 							</select>
 						</div>
-						<div class="col-4">
+						<div class="col-6">
 
 							<span id="uomTypeError"></span>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-4">
+						<div class="col-2">
 							<label for="uomModel">Uom Model</label>
 						</div>
 						<div class="col-4">
-							<input type="text" th:field="*{uomModel}" class="form-controller">
+							<input type="text" th:field="*{uomModel}" class="form-control">
 						</div>
-						<div class="col-4">
+						<div class="col-6">
 							<span id="uomModelError"></span>
 						</div>
 						<div class="row">
-							<div class="col-4">
+							<div class="col-2">
 								<label for="description">Description</label>
 							</div>
 							<div class="col-4">
 								<input type="text" th:field="*{description}"
 									class="form-controller">
 							</div>
-							<div class="col-4">
-							<span id="descriptonError"></span>
-						</div>
+							<div class="col-6">
+								<span id="descriptonError"></span>
+							</div>
 						</div>
 					</div>
 
@@ -80,7 +89,6 @@
 		<b><a th:text="${message}"></a></b>
 
 	</div>
-
 
 
 </body>

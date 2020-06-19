@@ -1,5 +1,6 @@
 package com.pawan.boot.controller;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.pawan.boot.model.WhUserType;
 import com.pawan.boot.service.IWhUserTypeService;
+import com.pawan.boot.view.WhUserTypeExcelView;
 
 @Controller
 @RequestMapping("/whUserType")
@@ -62,41 +65,62 @@ public class WhUserTypeController {
 	}
 
 	@GetMapping("/eddit/{id}")
-	public String showWhUserTypeEdditPage(@PathVariable("id") Integer id,Model model) {
-		
-		if(service.isExist(id)) {
-			Optional<WhUserType> opt=service.getOneWhuserType(id);
-			WhUserType whUserType=opt.get();
+	public String showWhUserTypeEdditPage(@PathVariable("id") Integer id, Model model) {
+
+		if (service.isExist(id)) {
+			Optional<WhUserType> opt = service.getOneWhuserType(id);
+			WhUserType whUserType = opt.get();
 			model.addAttribute("whUserType", whUserType);
 			return "WhUserTypeEddit";
 		}
-		
+
 		return "redirect../all";
-		
-		
+
 	}
+
 	@PostMapping("/update")
-	public String  update(@ModelAttribute WhUserType whUserType,Model model ) {
-		
+	public String update(@ModelAttribute WhUserType whUserType, Model model) {
+
 		service.updateWhuserType(whUserType);
-		model.addAttribute("message", "WhUser '"+whUserType.getId()+"'  updated successfuly");
+		model.addAttribute("message", "WhUser '" + whUserType.getId() + "'  updated successfuly");
 		model.addAttribute("list", service.getAllWhuserTypes());
 		return "WhUserTypeData";
-		
+
 	}
+
 	@GetMapping("/view/{id}")
-	public String getOneWhUserType(@PathVariable("id") Integer id,Model model) {
-		if(service.isExist(id)) {
-			Optional<WhUserType>opt=service.getOneWhuserType(id);
-			WhUserType whUserType=opt.get();
+	public String getOneWhUserType(@PathVariable("id") Integer id, Model model) {
+		if (service.isExist(id)) {
+			Optional<WhUserType> opt = service.getOneWhuserType(id);
+			WhUserType whUserType = opt.get();
 			model.addAttribute("whUserType", whUserType);
 			return "WhUserTypeView";
-		}
-		else {
+		} else {
 			model.addAttribute("message", "data not existed");
 			return "redirect../all";
 		}
-		
-		  
+
+	}
+
+	@GetMapping("/excel")
+	public ModelAndView exportAll() {
+
+		ModelAndView mv = new ModelAndView();
+		mv.setView(new WhUserTypeExcelView());
+		mv.addObject("list", service.getAllWhuserTypes());
+		return mv;
+
+	}
+
+	@GetMapping("/excelone/{id}")
+	public ModelAndView exportOneWhUser(@PathVariable Integer id) {
+
+		ModelAndView mv = new ModelAndView();
+		mv.setView(new WhUserTypeExcelView());
+		Optional<WhUserType> opt = service.getOneWhuserType(id);
+		if (opt.isPresent())
+			mv.addObject("list", Arrays.asList(opt.get()));
+		return mv;
+
 	}
 }

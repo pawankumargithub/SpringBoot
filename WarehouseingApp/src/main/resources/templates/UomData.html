@@ -16,6 +16,7 @@
 			</div>
 			<div class="card-body">
 
+                 <a th:href="@{/uom/excel}" class="btn btn-success">EXPORT ALL</a>
 				<table class="table table table-hover">
 
 					<tr class="bg-info text-white text-center">
@@ -23,7 +24,7 @@
 						<th>TYPE</th>
 						<th>MODEL</th>
 						<th>DESCRIPTION</th>
-						<th colspan="2">ACTION</th>
+						<th colspan="3">ACTION</th>
 					</tr>
 					<tr th:each="ob:${list}">
 						<td th:text="${ob.id}"></td>
@@ -33,6 +34,8 @@
 						<td><a th:href="@{/uom/delete/{id}(id=${ob.id})}"
 							class="btn btn-danger">DELETE</a> <a
 							th:href="@{/uom/eddit/{id}(id=${ob.id})}" class="btn btn-success">EDDIT</a></td>
+							<td><a th:href="@{/uom/excelone/{id}(id=${ob.id})}"
+							class="btn btn-warning">EXPORT</a>
 
 					</tr>
 

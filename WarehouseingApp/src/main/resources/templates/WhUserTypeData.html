@@ -14,6 +14,7 @@
            </div>
            
              <div class="card-body">
+             <a th:href="@{/whUserType/excel}" class="btn btn-warning">EXPORT ALL</a>
              <table class="table table table-hover">
 
 		<tr class="bg-info text-white text-center">
@@ -26,7 +27,7 @@
 			<th>USER CONTACT</th>
 			<th>USER ID</th>
 			<th>ID NUMBER</th>
-			<th colspan="4">ACTION</th>
+			<th colspan="3">ACTION</th>
 		</tr>
 
 		<tr th:each="ob:${list}">
@@ -43,6 +44,7 @@
 			<a th:href="@{/whUserType/delete/{id}(id=${ob.id})}" class="btn btn-danger">DELETE</a>
 			<a th:href="@{/whUserType/eddit/{id}(id=${ob.id})}" class="btn btn-success">EDDIT</a>
 			<a th:href="@{/whUserType/view/{id}(id=${ob.id})}" class="btn btn-warning">VIEW</a>
+			<a th:href="@{/whUserType/excelone/{id}(id=${ob.id})}" class="btn btn-warning">EXPORT EXCEL</a>
 			</td>
 
 		</tr>

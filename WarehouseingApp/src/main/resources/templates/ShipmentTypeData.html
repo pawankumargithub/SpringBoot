@@ -15,6 +15,7 @@
 		</div>
 		<div class="card-body">
 
+         <a th:href="@{/shipMenttype/exceldata}" class="btn btn-success">EXPORT ALL DATA IN EXCEL</a>
 			<table class="table table-hover">
 				<tr class="bg-info text-white text-center">
 
@@ -24,7 +25,7 @@
 					<th>ENABLE</th>
 					<th>GRADE</th>
 					<th>DESCRIPTION</th>
-					<th colspan="1">ACTION</th>
+					<th colspan="3">ACTION</th>
 				</tr>
 
 				<tr th:each="ob:${list}">
@@ -35,7 +36,9 @@
 					<td th:text="${ob.shipmentGrade}"></td>
 					<td th:text="${ob.description}"></td>
 					<td><a th:href="@{/shipMenttype/delete/{id}(id=${ob.id})}" class="btn btn-danger">DELETE</a>
-						<a th:href="@{/shipMenttype/eddit/{id}(id=${ob.id})}" class="btn btn-success">EDDIT</a></td>
+					<td><a th:href="@{/shipMenttype/eddit/{id}(id=${ob.id})}" class="btn btn-success">EDDIT</a></td>
+					<td><a th:href="@{/shipMenttype/exceldataone/{id}(id=${ob.id})}" class="btn btn-success">EXCEL EXPORT</a></td>
+					
 
 				</tr>
 			</table>

@@ -1,5 +1,6 @@
 package com.pawan.boot.controller;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.pawan.boot.model.OrderMethod;
 import com.pawan.boot.service.IOrderMethodService;
+import com.pawan.boot.view.OrderMethodExcelView;
 
 @Controller
 @RequestMapping("/orderMethod")
@@ -74,5 +77,43 @@ public class OrderMethodController {
 		OrderMethod orderMethod = opt.get();
 		model.addAttribute("orderMethod", orderMethod);
 		return "OrderView";
+	}
+
+	@RequestMapping("/delete/{id}")
+	public String deleteOrderMethodById(@PathVariable("id") Integer id, Model model) {
+
+		if (service.isExist(id)) {
+			service.deleteorderMethod(id);
+			String message = "ordermethod '" + id + "'" + "deleted";
+			model.addAttribute("message", message);
+			model.addAttribute("list", service.getAllorderMethods());
+			return "OrderMethodData";
+		} else {
+
+			String message = "ordermethod '" + id + "'" + "not exist";
+			model.addAttribute("message", message);
+			model.addAttribute("list", service.getAllorderMethods());
+			return "OrderMethodData";
+		}
+
+	}
+
+	@GetMapping("/excel")
+	public ModelAndView exportAll() {
+
+		ModelAndView mv = new ModelAndView();
+		mv.setView(new OrderMethodExcelView());
+		return mv.addObject("list", service.getAllorderMethods());
+	}
+
+	@GetMapping("/excelone/{id}")
+	public ModelAndView exportOneOrder(@PathVariable Integer id) {
+
+		ModelAndView mv = new ModelAndView();
+		mv.setView(new OrderMethodExcelView());
+		Optional<OrderMethod> opt = service.getOneOrderMethod(id);
+		if (opt.isPresent())
+			mv.addObject("list", Arrays.asList(opt.get()));
+		return mv;
 	}
 }

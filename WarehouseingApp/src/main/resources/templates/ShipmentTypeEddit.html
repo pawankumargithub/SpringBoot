@@ -2,7 +2,13 @@
 <html xmlns:th="https://www.thymeleaf.org" />
 <head>
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/shipment.js}"></script>
 </head>
 <body>
 
@@ -15,19 +21,19 @@
 			</div>
 			<div class="card-body">
 				<form th:action="@{/shipMenttype/update}" method="post"
-					th:object="${shipmentType}">
+					id="shipmentForm"  th:object="${shipmentType}">
 
-                     <div class="row">
-                        <div class="col-4">
-                         <label for="id">ID</label>
-                        </div>
-                     <div class="col-4">
-                         <input type="text" th:field="*{id}" readonly="readonly">
-                     </div>
-                       <div class="col-4">
-                       <span id="shipmentidError"></span>
-                       </div>
-                     </div>
+					<div class="row">
+						<div class="col-4">
+							<label for="id">ID</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{id}" readonly="readonly">
+						</div>
+						<div class="col-4">
+							<span id="shipmentidError"></span>
+						</div>
+					</div>
 					<div class="row">
 						<div class="col-4">
 							<label for="shipmentMode">Shipment Mode</label>
@@ -112,5 +118,6 @@
 			</div>
 
 		</div>
+		
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.pawan.boot.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.pawan.boot.model.Uom;
 import com.pawan.boot.service.IUomService;
+import com.pawan.boot.view.UomExcelView;
 
 @Controller
 @RequestMapping("/uom")
@@ -85,8 +88,8 @@ public class UomController {
 
 	@PostMapping("/update")
 	public String updateUomByid(@ModelAttribute("uom") Uom uom, Model model) {
-		  
-	     service.saveUom(uom);
+
+		service.saveUom(uom);
 		model.addAttribute("uom", new Uom());
 		String message = "uom updated sucessfully";
 		List<Uom> list = service.getAllUom();
@@ -94,5 +97,22 @@ public class UomController {
 		model.addAttribute("message", message);
 		return "UomData";
 
+	}
+
+	@GetMapping("/excel")
+	public ModelAndView exportAll() {
+		ModelAndView mv = new ModelAndView();
+		mv.setView(new UomExcelView());
+		return mv.addObject("list", service.getAllUom());
+	}
+
+	@GetMapping("/excelone/{id}")
+	public ModelAndView exportOneUom(@PathVariable Integer id) {
+		ModelAndView mv = new ModelAndView();
+		mv.setView(new UomExcelView());
+		Optional<Uom> opt = service.getOneUom(id);
+		if (opt.isPresent())
+			mv.addObject("list", Arrays.asList(opt.get()));
+		return mv;
 	}
 }
