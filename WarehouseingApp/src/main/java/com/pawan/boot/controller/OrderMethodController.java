@@ -23,7 +23,7 @@ public class OrderMethodController {
 
 	@Autowired
 	private IOrderMethodService service;
-
+  int a=9;
 	@GetMapping("/register")
 	public String showOrderMethodRegisterPage(@ModelAttribute("orderMethod") OrderMethod orderMethod) {
 
