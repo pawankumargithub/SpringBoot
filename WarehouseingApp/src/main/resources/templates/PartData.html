@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+
+
+<body>
+
+	<div class="container">
+
+		<div class="card">
+
+			<div class="card-header">
+				<h3>WELCOME PART UOM DATA PAGE</h3>
+			</div>
+			<div class="card-body">
+
+				<a th:href="@{/part/excel}" class="btn btn-success">EXPORT ALL</a>
+				<table class="table table table-hover">
+
+					<tr class="bg-info text-white text-center">
+						<th>ID</th>
+						<th>CODE</th>
+						<th>WIDTH</th>
+						<th>LENGTH</th>
+						<th>HEIGHT</th>
+						<th>BASE COST</th>
+						<th>BASE CURRENCY</th>
+						<th>DESCRIPTION</th>
+						<th colspan="3">ACTION</th>
+					</tr>
+					<tr th:each="ob:${list}">
+						<td th:text="${ob.id}"></td>
+						<td th:text="${ob.partCode}"></td>
+						<td th:text="${ob.partWdth}"></td>
+						<td th:text="${ob.partLen}"></td>
+
+						<td th:text="${ob.partHgh}"></td>
+						<td th:text="${ob.baseCost}"></td>
+						<td th:text="${ob.baseCurr}"></td>
+						<td th:text="${ob.description}"></td>
+
+						<td><a th:href="@{/part/delete/{id}(id=${ob.id})}"
+							class="btn btn-danger">DELETE</a> <a
+							th:href="@{/part/eddit/{id}(id=${ob.id})}" class="btn btn-success">EDDIT</a></td>
+						<td><a th:href="@{/part/excelone/{id}(id=${ob.id})}"
+							class="btn btn-warning">EXPORT</a>
+					</tr>
+
+				</table>
+
+			</div>
+		</div>
+	</div>
+	<!-- <div class="card-footer bg-primary text-center text-white">
+		<a th:text="${message}"></a>
+	</div> -->
+
+
+</body>
+</html>

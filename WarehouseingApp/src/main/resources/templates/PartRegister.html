@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/part.js}"></script>
+</head>
+<body>
+
+	<div class="container">
+
+		<div class="card">
+
+			<div class="card-header text-center bg-primary">
+
+				<h3>WELCOME TO PART REGISTER PAGE</h3>
+
+			</div>
+
+			<div class="card-body">
+
+
+				<form th:action="@{/part/save}" method="post" id="partForm"
+					th:object="${part}">
+
+					<div class="row">
+
+						<div class="col-2">
+							<label>PART CODE*:</label>
+
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{partCode}" class="form-control">
+
+						</div>
+						<div class="col-4">
+							<span id="partCodeError"></span>
+
+						</div>
+					</div>
+					<div class="row">
+
+						<div class="col-2">
+							<label>PART WIDTH*:</label>
+
+						</div>
+						<div class="col-4">
+
+							<input type="text" th:field="*{partWdth}" class="form-control">
+
+						</div>
+						<div class="col-6">
+							<span id="partWdthError"></span>
+
+						</div>
+					</div>
+					<div class="row">
+
+						<div class="col-2">
+							<label>PART LENGTH*:</label>
+
+						</div>
+						<div class="col-4">
+
+							<input type="text" th:field="*{partLen}" class="form-control">
+
+						</div>
+						<div class="col-6">
+							<span id="partLengthError"></span>
+
+						</div>
+					</div>
+					<div class="row">
+
+						<div class="col-2">
+							<label>PART HEIGHT*:</label>
+
+						</div>
+						<div class="col-4">
+
+							<input type="text" th:field="*{partHgh}" class="form-control">
+
+						</div>
+						<div class="col-6">
+							<span id="partHeightError"></span>
+
+						</div>
+					</div>
+					<div class="row">
+
+						<div class="col-2">
+							<label>BASE COST*:</label>
+
+						</div>
+						<div class="col-4">
+
+							<input type="text" th:field="*{baseCost}" class="form-control">
+
+						</div>
+						<div class="col-6">
+							<span id="baseCostError"></span>
+
+						</div>
+					</div>
+					<div class="row">
+
+						<div class="col-2">
+							<label>BASE CURRENCY*:</label>
+
+						</div>
+						<div class="col-4">
+
+							<select th:field="*{baseCurr}" class="form-control">
+
+								<option value="">SELECT</option>
+								<option value="INR">INR</option>
+								<option value="USD">USD</option>
+								<option value="AUS">AUS</option>
+								<option value="ERU">ERU</option>
+
+							</select>
+
+						</div>
+						<div class="col-6">
+							<span id="baseCurrencyError"></span>
+
+						</div>
+					</div>
+
+					<div class="row">
+
+						<div class="col-2">
+							<label>DESCRIPTION*:</label>
+
+						</div>
+						<div class="col-4">
+
+							<input type="text" th:field="*{description}" class="form-control">
+
+						</div>
+						<div class="col-6">
+							<span id="descriptiontError"></span>
+
+						</div>
+					</div>
+
+					<input type="submit" value="create part" class="btn btn-success">
+				</form>
+			</div>
+			<div class="card-footer">
+				<a th:text="${message}"></a>
+
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

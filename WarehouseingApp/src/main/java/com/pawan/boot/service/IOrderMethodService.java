@@ -18,4 +18,6 @@ public interface IOrderMethodService {
 	Optional<OrderMethod> getOneOrderMethod(Integer id);
 
 	boolean isExist(Integer id);
+
+	boolean isOrderMethodCodeExist(String code);
 }

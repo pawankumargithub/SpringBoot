@@ -18,4 +18,10 @@ public interface IWhUserTypeService {
 	Optional<WhUserType> getOneWhuserType(Integer id);
 
 	boolean isExist(Integer id);
+
+	boolean isUserCodeExist(String userCode);
+
+	boolean isUserEmailExist(String email);
+
+	boolean isUserContactExist(String contact);
 }

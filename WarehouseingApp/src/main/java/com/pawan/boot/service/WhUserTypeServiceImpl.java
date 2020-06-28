@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pawan.boot.model.WhUserType;
 import com.pawan.boot.repossitory.WhUserTypeRepository;
@@ -17,7 +18,7 @@ public class WhUserTypeServiceImpl implements IWhUserTypeService {
 
 	@Override
 	public Integer saveWhuserType(WhUserType whuserType) {
-		
+
 		return repo.save(whuserType).getId();
 	}
 
@@ -49,4 +50,29 @@ public class WhUserTypeServiceImpl implements IWhUserTypeService {
 		return repo.existsById(id);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public boolean isUserCodeExist(String userCode) {
+
+		Integer count = repo.findByUserCode(userCode);
+		System.out.println(count);
+
+		boolean flag = (count > 0 ? true : false);
+		return flag;
+	}
+
+	@Override
+	public boolean isUserEmailExist(String mail) {
+
+		Integer count = repo.countByUserMail(mail);
+		System.out.println(count);
+
+		return (count > 0 ? true : false);
+	}
+
+	@Override
+	public boolean isUserContactExist(String contact) {
+		Integer count = repo.countByUserContact(contact);
+		return (count > 0 ? true : false);
+	}
 }

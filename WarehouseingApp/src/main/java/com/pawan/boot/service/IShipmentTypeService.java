@@ -18,4 +18,6 @@ public interface IShipmentTypeService {
 	Optional<ShipmentType> getOneShipment(Integer id);
 
 	boolean isExist(Integer id);
+
+	boolean isShipmentTypeCodeExists(String code);
 }

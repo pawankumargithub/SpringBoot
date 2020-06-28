@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pawan.boot.model.OrderMethod;
@@ -23,7 +25,7 @@ public class OrderMethodController {
 
 	@Autowired
 	private IOrderMethodService service;
-  
+
 	@GetMapping("/register")
 	public String showOrderMethodRegisterPage(@ModelAttribute("orderMethod") OrderMethod orderMethod) {
 
@@ -115,5 +117,15 @@ public class OrderMethodController {
 		if (opt.isPresent())
 			mv.addObject("list", Arrays.asList(opt.get()));
 		return mv;
+	}
+
+	@GetMapping("/code")
+	public @ResponseBody String validateOrderMethodCode(@RequestParam("code") String code) {
+
+		String msg = "";
+		if (service.isOrderMethodCodeExist(code)) {
+			msg = "'"+code+"' already existed";
+		}
+		return msg;
 	}
 }

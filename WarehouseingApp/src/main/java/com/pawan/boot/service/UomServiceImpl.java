@@ -14,9 +14,10 @@ public class UomServiceImpl implements IUomService {
 
 	@Autowired
 	private UomRepository repo;
+
 	@Override
 	public Integer saveUom(Uom uom) {
-	Integer id=repo.save(uom).getId();
+		Integer id = repo.save(uom).getId();
 		return id;
 	}
 
@@ -40,8 +41,8 @@ public class UomServiceImpl implements IUomService {
 
 	@Override
 	public Optional<Uom> getOneUom(Integer id) {
-	Optional<Uom> opt=repo.findById(id);
-	   
+		Optional<Uom> opt = repo.findById(id);
+
 		return opt;
 	}
 
@@ -51,4 +52,9 @@ public class UomServiceImpl implements IUomService {
 		return repo.existsById(id);
 	}
 
+	@Override
+	public boolean isUomModelExist(String model) {
+		Integer count = repo.countUomModel(model);
+		return count > 0 ? true : false;
+	}
 }

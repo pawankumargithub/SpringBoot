@@ -14,44 +14,50 @@ public class OrderMethodServiceImpl implements IOrderMethodService {
 
 	@Autowired
 	private OrderMethodRepository repo;
+
 	@Override
 	public Integer saveOrderMethod(OrderMethod orderMethod) {
-	
-		
+
 		return repo.save(orderMethod).getId();
 	}
 
 	@Override
 	public void updateorderMethod(OrderMethod orderMethod) {
-		
+
 		repo.save(orderMethod);
 
 	}
 
 	@Override
 	public void deleteorderMethod(Integer id) {
-	
+
 		repo.deleteById(id);
 
 	}
 
 	@Override
 	public List<OrderMethod> getAllorderMethods() {
-	
+
 		return repo.findAll();
 	}
 
 	@Override
 	public Optional<OrderMethod> getOneOrderMethod(Integer id) {
-	
-		Optional<OrderMethod> opt=repo.findById(id);
+
+		Optional<OrderMethod> opt = repo.findById(id);
 		return opt;
 	}
 
 	@Override
 	public boolean isExist(Integer id) {
-		
+
 		return repo.existsById(id);
 	}
 
+	@Override
+	public boolean isOrderMethodCodeExist(String code) {
+		Integer count = repo.countOrderCode(code);
+		System.out.println(count);
+		return (count > 0 ? true : false);
+	}
 }

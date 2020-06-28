@@ -75,7 +75,9 @@ $(document)
 
 							shipmentCodeError = false;
 
-						} else {
+						}
+						else {
+						
 							$("#shipmentCodeError").hide();
 							shipmentCodeError = true;
 

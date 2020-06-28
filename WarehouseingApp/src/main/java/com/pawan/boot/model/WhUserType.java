@@ -18,22 +18,28 @@ import lombok.Data;
 public class WhUserType {
 
 	@Id
-	@GeneratedValue(generator = "whuser_sequence")
-	@SequenceGenerator(name = "whuser_sequence", sequenceName = "whuser_sequence")
-	@Column(name = "user_id")
+	@GeneratedValue(generator = "whusertype_seq")
+	@SequenceGenerator(name="whusertype_seq",sequenceName = "whuser_type_seq")
+	@Column(name="wh_usr_id_col")
 	private Integer id;
-	@Column(name = "usertype_col")
+	
+	@Column(name="wh_usr_type_col")
 	private String userType;
-	@Column(name = "usercode_col")
+	@Column(name="wh_usr_code_col")
 	private String userCode;
-	@Column(name = "userfor_col")
+	@Column(name="wh_usr_for_col")
 	private String userFor;
-	@Column(name = "user_email_col")
-	private String userEmail;
-	@Column(name = "user_contact_col")
+
+	@Column(name="wh_usr_mail_col")
+	private String userMail;
+	@Column(name="wh_usr_contact_col")
 	private String userContact;
-	@Column(name = "userid_type_col")
+	
+	@Column(name="wh_usr_id_type_col")
 	private String userIdType;
-	@Column(name = "idNumber_col")
+	@Column(name="wh_usr_if_other_col")
+	private String ifother;
+	@Column(name="wh_usr_if_num_col")
 	private String idNumber;
+	
 }

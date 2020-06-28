@@ -1,150 +1,234 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" />
+<html xmlns:th="https://www.thymeleaf.org/">
 <head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
+</script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" th:src="@{/js/whuser.js}"></script>
 </head>
 <body>
-
 	<div class="container">
-
 		<div class="card">
-
 			<div class="card-header bg-primary text-white text-center">
-				<h3>WELCOME TO ORDERMETHOD REGISTER PAGE</h3>
+				<h3>WH USER TYPE REGISTER PAGE!</h3>
 			</div>
-		</div>
+			<div class="card-body">
 
-		<div class="card-body">
+				<form id="whUserTypeForm" th:action="@{/whUserType/save}"
+					method="POST" th:object="${whUserType}">
 
-			<form th:action="@{/whUserType/save}" method="post"
-				th:object="${whUserType}">
-
-				<div class="row">
-
-					<div class="col-4">
-
-						<label for="userType">User Type</label>
-					</div>
-					<div class="col-4">
-						<input type="radio" th:field="*{userType}" value="VENDOR">VENDOR
-						<input type="radio" th:field="*{userType}" value="CUSTOMER">CUSTOMER
-
-					</div>
-					<div class="col-4">
-						<span id="userTypeError"</span>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-4">
-						<label for="userCode"> USER CODE</label>
-					</div>
-					<div class="col-4">
-						<input type="text" th:field="*{userCode}" class="form-controller">
-
-					</div>
-					<div class="col-4">
-						<span id="userCodeError"></span>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-4">
-						<label for="userFor"> FOR USER</label>
-					</div>
-					<div class="col-4">
-
-
-						<select th:field="*{userFor}">
-
-							<option value="PURCHASE">PURCHASE</option>
-							<option value="SALE">SALE</option>
-						</select>
-					</div>
-					<div class="col-4">
-						<span id="userForError"></span>
-					</div>
-
-				</div>
-				<div class="row">
-
-					<div class="col-4">
-						<label for="userEmail">USER EMAIL</label>
-					</div>
-					<div class="col-4">
-
-						<input type="text" th:field="*{userEmail}" class="form-controller" />
-					</div>
-					<div class="col-4">
-						<span id="userEmailError"></span>
-					</div>
-				</div>
-
-				<div class="row">
-
-					<div class="col-4">
-						<label for="userContact">CONTCAT</label>
-					</div>
-					<div class="col-4">
-
-						<input type="text" th:field="*{userContact}"
-							class="form-controller" />
-					</div>
-					<div class="col-4">
-						<span id="userContactError"></span>
-					</div>
-				</div>
-
-
-				<div class="row">
-
-					<div class="col-4">
-						<label for="userIdType">USER ID TYPE</label>
-					</div>
-					<div class="col-4">
-
-						<select th:field="*{userIdType}">
-							<option value="">SELECT</option>
-							<option value="PANCARD">PANCARD</option>
-							<option value="ADHAR CARD">ADHAR CARD</option>
-							<option value="VOTER ID">VOTER ID</option>
-							<option value="PASSPORT">PASSPORT</option>
-							<option value="OTHERS">OTHERS</option>
-						</select>
+					<!-- Row#1 -->
+					<div class="row">
+						<div class="col-2">
+							<label>User Type</label>
+						</div>
 						<div class="col-4">
+							<input type="radio" th:field="*{userType}" value="Vendor" />Vendor 
+							<input type="radio" th:field="*{userType}"
+								value="Customer" /> Customer
+						</div>
+						<div class="col-6">
+							<span id="userTypeError"></span>
+						</div>
+					</div>
+
+
+					<!-- Row#2 -->
+					<div class="row">
+						<div class="col-2">
+							<label>User Code</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{userCode}" class="form-control" />
+						</div>
+						<div class="col-6">
+							<span id="userCodeError"></span>
+						</div>
+					</div>
+
+					<!-- Row#3 -->
+					<div class="row">
+						<div class="col-2">
+							<label>User For</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{userFor}" class="form-control"
+								readonly />
+						</div>
+					</div>
+
+
+					<!-- Row#4 -->
+					<div class="row">
+						<div class="col-2">
+							<label>User Mail</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{userMail}" class="form-control" />
+						</div>
+						<div class="col-6">
+							<span id="userMailError"></span>
+						</div>
+					</div>
+
+					<!-- Row#5 -->
+					<div class="row">
+						<div class="col-2">
+							<label>User Contact</label>
+						</div>
+						<div class="col-4">
+							<textarea th:field="*{userContact}" class="form-control"></textarea>
+						</div>
+						<div class="col-6">
+							<span id="userContactError"></span>
+						</div>
+					</div>
+
+					<!-- Row#6 -->
+					<div class="row">
+						<div class="col-2">
+							<label>User Id Type</label>
+						</div>
+						<div class="col-4">
+							<select th:field="*{userIdType}" class="form-control">
+								<option value="">-SELECT-</option>
+								<option value="PAN CARD">PAN CARD</option>
+								<option value="AADHAR CARD">AADHAR CARD</option>
+								<option value="VOTER ID CARD">VOTER ID CARD</option>
+								<option value="OTHER">OTHER</option>
+							</select>
+						</div>
+						<div class="col-6">
 							<span id="userIdTypeError"></span>
 						</div>
 					</div>
 
+
+					<!-- Row#7 -->
 					<div class="row">
-						<div class="col-4">
-							<label for="idNumber"> USER ID NUMBER</label>
+						<div class="col-2">
+							<label>If Other</label>
 						</div>
-
 						<div class="col-4">
-							<input type="text" th:field="*{idNumber}" class="form-controller">
-
+							<input type="text" th:field="*{ifother}" class="form-control"
+								readonly />
 						</div>
-					<div class="col-4">
-						<span id="userContactError"></span>
+						<div class="col-6">
+							<span id="ifotherError"></span>
+						</div>
 					</div>
+
+					<!-- Row#8 -->
+					<div class="row">
+						<div class="col-2">
+							<label>ID Number</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{idNumber}" class="form-control" />
+						</div>
+						<div class="col-6">
+							<span id="idNumberError"></span>
+						</div>
+					</div>
+
+					<input type="submit" value="Add WhUserType" class="btn btn-success" />
+
+				</form>
+
+			</div>
+			<!-- card Body End -->
+
+
+			<div th:if="${message!=null}">
+				<div class="card-footer bg-info text-white text-center">
+					<b><span th:text="${message}"></span></b>
 				</div>
-
-				<input type="submit" value="Register WhUserType" class="btn btn-success">
-				
-			</form>
-
+			</div>
+			<!-- card Footer End -->
 		</div>
 	</div>
-
-	<div class="card-footer text-center bg-primary">
-
-		<a th:text="${message}"></a>
-
-	</div>
-
-
-
-
-
+	<script type="text/javascript">
+	
+	$(document).ready(function(){
+		$("#userCode").change(function(){
+			$.ajax({
+				
+				url:'validateUserCode',
+				data:{"code":$("#userCode").val()},
+				success:function(resTxt){
+					
+					if(resTxt!=""){
+						
+						 $("#userCodeError").show();
+				          $("#userCodeError").text(resTxt);
+				          $("#userCodeError").css("color","blue");
+				          $("#userCode").val('');//clear form input
+					}
+					else{
+						
+						 $("#userCodeError").hide();
+					}
+				}
+				
+			})
+			
+			
+		});
+		//new..........
+		$("#userMail").change(function(){
+			$.ajax({
+				
+				url:'email',
+				data:{"mail":$("#userMail").val()},
+				success:function(resTxt){
+					
+					if(resTxt!=""){
+						
+						 $("#userMailError").show();
+				          $("#userMailError").text(resTxt);
+				          $("#userMailError").css("color","blue");
+				          $("#userMail").val('');//clear form input
+					}
+					else{
+						
+						 $("#userMailError").hide();
+					}
+				}
+				
+			})
+			
+			
+		});
+		$("#userContact").change(function(){
+			$.ajax({
+				
+				url:'usercontact',
+				data:{"contact":$("#userContact").val()},
+				success:function(resTxt){
+					
+					if(resTxt!=""){
+						 $("#userContactError").show();
+						 $("#userContactError").html(resTxt);
+						 $("#userContactError").css("color","blue");
+						 $("#userContact").val('');
+					}
+					else{
+						 $("#userContactError").hide();
+					}
+				}
+				
+			})
+			
+		});
+	});
+	
+	</script>
 </body>
 </html>

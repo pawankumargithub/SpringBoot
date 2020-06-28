@@ -4,7 +4,7 @@
 <head>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script
@@ -111,6 +111,28 @@
 
 		</div>
 
-		
+ 
+  <script type="text/javascript">
+$(document).ready(function(){
+  $("#shipmentCode").change(function(){
+    $.ajax({
+      url : 'validateCode',
+      data: {"code": $("#shipmentCode").val() },
+      success:function(resTxt){
+        if(resTxt!=""){
+          $("#shipmentCodeError").show();
+          $("#shipmentCodeError").text(resTxt);
+          $("#shipmentCodeError").css("color","red");
+          $("#shipmentCode").val('');//clear form input
+        }else{
+          $("#shipmentCodeError").hide();
+        }
+      }
+    });
+  });
+});
+</script>
+
+
 </body>
 </html>

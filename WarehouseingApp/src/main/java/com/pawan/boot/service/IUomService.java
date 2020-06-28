@@ -18,4 +18,7 @@ public interface IUomService {
 	Optional<Uom> getOneUom(Integer id);
 
 	boolean isExist(Integer id);
+
+	boolean isUomModelExist(String model);
+
 }

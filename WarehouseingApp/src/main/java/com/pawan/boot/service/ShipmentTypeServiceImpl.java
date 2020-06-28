@@ -60,4 +60,12 @@ public class ShipmentTypeServiceImpl implements IShipmentTypeService {
 		return repo.existsById(id);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public boolean isShipmentTypeCodeExists(String code) {
+		Integer count=repo.getshipmentCodeCount(code);
+		System.out.println(count);
+		boolean flag=(count>0?true:false);
+		return flag;
+	}
 }

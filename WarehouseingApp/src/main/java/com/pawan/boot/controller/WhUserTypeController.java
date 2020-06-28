@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pawan.boot.model.WhUserType;
 import com.pawan.boot.service.IWhUserTypeService;
+import com.pawan.boot.util.EmailSender;
 import com.pawan.boot.view.WhUserTypeExcelView;
 
 @Controller
@@ -23,6 +26,8 @@ public class WhUserTypeController {
 
 	@Autowired
 	private IWhUserTypeService service;
+	@Autowired
+	private EmailSender sender;
 
 	@GetMapping("/register")
 	public String showWhUserTypeRegisterPage(Model model) {
@@ -38,7 +43,17 @@ public class WhUserTypeController {
 
 		Integer id = service.saveWhuserType(whUserType);
 		model.addAttribute("whUserType", new WhUserType());
-		model.addAttribute("message", "WhUser '" + id + "'" + "saved successfully");
+		String message = "WhUser '" + id + "'" + "saved successfully";
+
+		if (id != 0) {
+
+			boolean status = sender.sendMail(whUserType.getUserMail(), "welcome", whUserType.getUserCode());
+			if (status)
+				message += "email also sent";
+			else
+				message += "email not sent";
+		}
+		model.addAttribute("message", message);
 		return "WhUserTypeRegister";
 	}
 
@@ -122,5 +137,39 @@ public class WhUserTypeController {
 			mv.addObject("list", Arrays.asList(opt.get()));
 		return mv;
 
+	}
+
+	@GetMapping("/validateUserCode")
+
+	public @ResponseBody String valdateUserCode(@RequestParam String code) {
+
+		System.out.println("WhUserTypeController.valdateUserCode()");
+		String msg = "";
+		if (service.isUserCodeExist(code)) {
+
+			msg = " '" + code + "' is already  exsisted";
+		}
+		return msg;
+
+	}
+
+	@GetMapping("/email")
+	public @ResponseBody String validateUserMail(@RequestParam("mail") String mail) {
+
+		String msg = "";
+		if (service.isUserEmailExist(mail)) {
+			msg = "'" + mail + "'already existed";
+		}
+		return msg;
+	}
+
+	@GetMapping("/usercontact")
+	public @ResponseBody String validateUserContact(@RequestParam("contact") String contact) {
+
+		String msg = "";
+		if (service.isUserContactExist(contact)) {
+			msg = "'" + contact + "' already existed";
+		}
+		return msg;
 	}
 }

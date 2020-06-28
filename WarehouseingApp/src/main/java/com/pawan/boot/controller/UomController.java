@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pawan.boot.model.Uom;
@@ -114,5 +116,15 @@ public class UomController {
 		if (opt.isPresent())
 			mv.addObject("list", Arrays.asList(opt.get()));
 		return mv;
+	}
+
+	@GetMapping("/model")
+	public @ResponseBody String validateUomModel(@RequestParam("model") String model) {
+
+		String msg = "";
+		if (service.isUomModelExist(model)) {
+			msg = " '"+model+"' already existed";
+		}
+		return msg;
 	}
 }

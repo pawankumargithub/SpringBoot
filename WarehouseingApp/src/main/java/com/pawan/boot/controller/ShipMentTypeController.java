@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pawan.boot.model.ShipmentType;
@@ -119,6 +121,16 @@ public class ShipMentTypeController {
 			view.addObject("list", Arrays.asList(opt.get()));
 		return view;
 
+	}
+	@GetMapping("/validateCode")
+	public @ResponseBody String validateShipmentCode(@RequestParam String code) {
+		String msg="";
+		
+		if(service.isShipmentTypeCodeExists(code)) {
+			msg="'"+code+"' already existed";
+		}
+		return msg;
+		
 	}
 
 }
